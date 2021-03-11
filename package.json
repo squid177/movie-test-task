@@ -1,0 +1,22 @@
+{
+  "name": "movie-test-task",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "start:dev": "GOOGLE_API_TOKEN=AIzaSyCfIr6GIWtqBVVDqxqWGSpomuf4gIYtMuA MONGO_CONNECTION_URL=mongodb://localhost ts-node-dev --respawn --transpile-only ./src/app.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "googleapis": "^67.1.0",
+    "mongoose": "^5.11.15"
+  },
+  "devDependencies": {
+    "@types/request": "^2.48.5",
+    "tslint": "^6.1.3",
+    "typescript": "^4.1.3"
+  }
+}
