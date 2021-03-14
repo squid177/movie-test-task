@@ -1,15 +1,15 @@
 import { MovieRepository } from '../repositories/movie-repository';
-import { Receiver } from '../../interfaces/receiver';
+import { IReceiver } from '../../interfaces/receiver';
 
-export class MovieRatingReceiver implements Receiver {
-	private count: number = 0;
+export class MovieRatingReceiver implements IReceiver {
+	private count = 0;
 
 	constructor(private movieRepository: MovieRepository) {}
 
-	async onRow(data: any) {	
+	async onRow(data: Record<string, unknown>): Promise<void> {	
 		await this.movieRepository.addMovieRating({
-			movieId: Number(data.movieId),
-			rating: String(data.rating)
+			movieId: String(data.movieId),
+			rating: Number(data.rating)
 		});
 		this.count++;
 		console.log(`Movie rating saved. Count: ${this.count}`);

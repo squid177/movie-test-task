@@ -1,5 +1,5 @@
 import { Db } from './components/db';
-import GoogleDriveCsvLoader from './components/google-drive-csv-loader';
+import { GoogleDriveCsvLoader } from './components/google-drive-csv-loader';
 import { MovieRatingReceiver } from './components/receivers/movie-rating-receiver';
 import { MovieReceiver } from './components/receivers/movie-receiver';
 import { MovieRepository } from './components/repositories/movie-repository';

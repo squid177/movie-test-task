@@ -5,7 +5,7 @@ export class Db {
 
   constructor(private DB_URL: string) { }
 
-  async connect() {
+  async connect(): Promise<void> {
     this.connection = await mongoose.connect(this.DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

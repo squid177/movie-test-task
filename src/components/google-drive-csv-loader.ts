@@ -1,9 +1,9 @@
 import { google } from 'googleapis';
 import parse from 'csv-parser';
 import { FailedFileLoadException } from '../exceptions';
-import { Receiver } from './../interfaces/receiver';
+import { IReceiver } from './../interfaces/receiver';
 
-export default class GoogleDriveCsvLoader {
+export class GoogleDriveCsvLoader {
   drive: any;
 
   constructor(apiKey: string) {
@@ -13,7 +13,7 @@ export default class GoogleDriveCsvLoader {
     });
   }
 
-  async load(fileId: string, writableStream: Receiver): Promise<void> {
+  async load(fileId: string, writableStream: IReceiver): Promise<void> {
     try {
       const response = await this.drive.files.get(
         { fileId, alt: "media" },

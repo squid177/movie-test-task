@@ -1,27 +1,28 @@
-import { MovieModel } from './../models/movie';
+import {  MovieModel } from './../models/movie';
 import { MovieRatingModel } from './../models/movie-rating';
+import { RatedTopResult, Movie, MovieRating } from './../../interfaces';
 
 export class MovieRepository {
 
-  async addMovie(data: any) {
+  async addMovie(data: Movie): Promise<void> {
     const newItem = new MovieModel();
     newItem.id = data.id;
     newItem.originalTitle = data.originalTitle;
     await newItem.save();
   }
 
-  async addMovieRating(data: any) {
+  async addMovieRating(data: MovieRating): Promise<void>  {
     const newItem = new MovieRatingModel();
-    newItem.movie_id = data.movieId;
+    newItem.movieId = data.movieId;
     newItem.rating = data.rating;
     await newItem.save();
   }
 
-  async getTopRated() {
+  async getTopRated(): Promise<RatedTopResult[]>  {
     return await MovieRatingModel.aggregate([
       {
         $group: {
-          _id: '$movie_id',
+          _id: '$movieId',
           avg: {
             $avg: "$rating"
           }
@@ -38,7 +39,7 @@ export class MovieRepository {
       },
       { $unwind: "$movie" },
       { $limit: 10 },
-      { $project: { original_title: "$movie.originalTitle", avg: "$avg", _id: 0 } }
+      { $project: { originalTitle: "$movie.originalTitle", avg: "$avg", _id: 0 } }
     ]).exec();
   }
 }

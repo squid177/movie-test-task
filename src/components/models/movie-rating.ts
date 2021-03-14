@@ -1,11 +1,9 @@
 import mongoose from 'mongoose';
+import { MovieRating } from './../../interfaces';
 
-export interface IMovieRating extends mongoose.Document {
-  movie_id: String;
-  rating: Number;
-};
+interface MovieRatingDocument extends mongoose.Document, MovieRating { }
 
-export const MovieRatingModel = mongoose.model<IMovieRating>('movie_rating', new mongoose.Schema({
+export const MovieRatingModel = mongoose.model<MovieRatingDocument>('movie_rating', new mongoose.Schema({
   movie_id: String,
   rating: Number
 }));

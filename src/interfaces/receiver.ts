@@ -1,4 +1,4 @@
 
-export interface Receiver {
+export interface IReceiver {
   onRow: (data: any) => Promise<void>
 }
